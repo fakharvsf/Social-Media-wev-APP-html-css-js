@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PiqoSocial</title>
+    <!-- CDN FOR ICONS -->
+    <link
+      rel="stylesheet"
+      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css"
+    />
+    <!-- STYLESHEET LINK -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <h2 class="logo">PiqoSocial</h2>
+        <div class="search-bar">
+          <i class="uil uil-search search-api"></i>
+          <input
+            type="search"
+            placeholder="Search for anything"
+            id="feed-search"
+          />
+        </div>
+        <div class="create">
+          <label class="btn btn-primary" for="create-post">Create</label>
+          <div class="profile-picture">
+            <img src="./images/profile-1.jpg" alt="Profile Picture" />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- /* ---------------------Main-Body-------------------------- */ -->
+    <main>
+      <div class="container">
+        <!-- /* ========================Subsection-Left============================ */ -->
+
+        <div class="left">
+          <a class="profile">
+            <div class="profile-picture">
+              <img src="./images/profile-1.jpg" alt="Profile Picture" />
+            </div>
+            <div class="handle">
+              <h4>Sniper Wolf</h4>
+              <p class="text-muted">@sniperwolf</p>
+            </div>
+          </a>
+          <!-- ----------Side-Bar----------------- -->
+          <div class="sidebar">
+            <a class="menu-item active">
+              <span><i class="uil uil-home"></i></span>
+              <h3>Home</h3>
+            </a>
+            <a class="menu-item"
+              ><span><i class="uil uil-compass"></i></span>
+              <h3>Explore</h3>
+            </a>
+            <a class="menu-item" id="notifications"
+              ><span
+                ><i class="uil uil-bell"
+                  ><small class="notifications-count">9+</small></i
+                ></span
+              >
+              <h3>Notifications</h3>
+              <!-- ---------Notification POPUP--------------- -->
+              <div class="notifications-popup">
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-2.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Ali</b> accepted your friend request.
+                    <small class="text-muted">2 DAYS AGO </small>
+                  </div>
+                </div>
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-3.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Baber</b> Commented on your post.
+                    <small class="text-muted">3 SECONDS AGO </small>
+                  </div>
+                </div>
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-4.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Jane Foster</b> and <b>3 others</b> liked your post.
+                    <small class="text-muted">3 MINUTES AGO </small>
+                  </div>
+                </div>
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-5.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Emilia clark</b> Commented on a post you are tagged in.
+                    <small class="text-muted">3 HOUR AGO </small>
+                  </div>
+                </div>
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-6.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Ivanka Trump</b> Commented on a post you are tagged in.
+                    <small class="text-muted">3 HOUR AGO </small>
+                  </div>
+                </div>
+                <div>
+                  <div class="profile-picture">
+                    <img src="./images/profile-7.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="notofication-body">
+                    <b>Baber</b> Commented on your post.
+                    <small class="text-muted">3 SECONDS AGO </small>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a class="menu-item" id="messages-notifications"
+              ><span
+                ><i class="uil uil-envelope-alt"
+                  ><small class="notifications-count">6</small></i
+                ></span
+              >
+              <h3>Messages</h3></a
+            >
+            <a class="menu-item">
+              <span><i class="uil uil-bookmark"></i></span>
+              <h3>Bookmarks</h3>
+            </a>
+            <a class="menu-item">
+              <span><i class="uil uil-chart-line"></i></span>
+              <h3>Analytics</h3>
+            </a>
+            <a class="menu-item" id="theme"
+              ><span><i class="uil uil-palette"></i></span>
+              <h3>Theme</h3>
+            </a>
+            <a class="menu-item"
+              ><span><i class="uil uil-setting"></i></span>
+              <h3>Settings</h3>
+            </a>
+          </div>
+          <!-- End of SideBar -->
+          <label for="create-post" class="btn btn-primary">Create Post</label>
+        </div>
+        <!-- END OF LEFT SIDE/* ========================Subsection-Middle============================ */ -->
+
+        <div class="middle">
+          <!-- Stories -->
+          <div class="stories">
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-8.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-9.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-10.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-11.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-12.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+              <div class="profile-picture">
+                <img src="./images/profile-13.jpg" alt="Profile Picture" />
+              </div>
+              <p class="name">Your Story</p>
+            </div>
+          </div>
+          <!-- ------------------END OF STORY---------------- -->
+          <form class="create-post">
+            <div class="profile-picture">
+              <img src="./images/profile-1.jpg" alt="Profile Picture" />
+            </div>
+            <input
+              type="text"
+              placeholder="What's on your Mind?"
+              id="create-post"
+            />
+            <input
+              type="submit"
+              value="post"
+              class="btn btn-primary post-create"
+            />
+          </form>
+          <!-- -------------------------------Feeds------------------------ -->
+
+          <div class="feeds">
+            <!-- -------------------------------1st Feed------------------- -->
+
+            <div class="feed">
+              <div class="head">
+                <div class="user">
+                  <div class="profile-picture">
+                    <img src="./images/profile-13.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="ingo">
+                    <h3>Lana Rose</h3>
+                    <small>Dubai,15 MINUTES AGO</small>
+                  </div>
+                </div>
+                <span class="edit">
+                  <i class="uil uil-ellipsis-h"></i>
+                  <!-- <i class="uil uil-delete"></i> -->
+                </span>
+              </div>
+              <div class="photo">
+                <img src="./images/feed-1.jpg" alt="image" />
+              </div>
+              <div class="action-buttons">
+                <div class="intraction-buttons">
+                  <span class="like-btn">
+                    <i class="fa-regular fa-heart active"></i
+                    ><i class="fa-solid fa-heart"></i>
+                  </span>
+                  <span class="Comment-btn">
+                    <i class="uil uil-comment-dots"></i>
+                  </span>
+                  <span>
+                    <i class="uil uil-share-alt"></i>
+                  </span>
+                </div>
+                <div class="bookmark">
+                  <span>
+                    <i class="uil uil-bookmark-full"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="liked-by">
+                <span><img src="./images/profile-15.jpg" alt="" /></span>
+                <span><img src="./images/profile-3.jpg" alt="" /></span>
+                <span><img src="./images/profile-6.jpg" alt="" /></span>
+                <p>Liked by <b>Ali</b> and <b>4 others</b></p>
+              </div>
+              <div class="caption">
+                <p>
+                  <b> Lorem ipsum</b> dolor sit amet consectetur adipisicing
+                  elit.
+                  <span class="hash-tag">#trending</span>
+                </p>
+              </div>
+              <table>
+                <tr>
+                  <td>
+                    <form
+                      onsubmit="event.preventDefault();onFormSubmit();"
+                      autocomplete="off"
+                    >
+                      <div class="Comment-area">
+                        <input type="text" name="fullName" class="fullName" />
+                        <label
+                          class="validation-error hide fullNameValidationError"
+                        ></label>
+                        <div class="form-action-buttons">
+                          <input
+                            type="submit"
+                            value="Comment"
+                            class="btn btn-primary"
+                          />
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <table class="list employeeList">
+                      <thead>
+                        <tr>
+                          <th></th>
+
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <div class="comments text-muted comment-count-text">
+                view all 3 comments
+              </div>
+              <!-- ---------------------------1st Feed end------------------- -->
+            </div>
+            <!-- -------------------------------2nd Feed------------------- -->
+
+            <div class="feed">
+              <div class="head">
+                <div class="user">
+                  <div class="profile-picture">
+                    <img src="./images/profile-13.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="ingo">
+                    <h3>Lana Rose</h3>
+                    <small>Dubai,15 MINUTES AGO</small>
+                  </div>
+                </div>
+                <span class="edit">
+                  <i class="uil uil-ellipsis-h"></i>
+                </span>
+              </div>
+              <div class="photo">
+                <img src="./images/feed-1.jpg" alt="image" />
+              </div>
+              <div class="action-buttons">
+                <div class="intraction-buttons">
+                  <span class="like-btn">
+                    <i class="fa-regular fa-heart active"></i
+                    ><i class="fa-solid fa-heart"></i>
+                  </span>
+                  <span class="Comment-btn">
+                    <i class="uil uil-comment-dots"></i>
+                  </span>
+                  <span>
+                    <i class="uil uil-share-alt"></i>
+                  </span>
+                </div>
+                <div class="bookmark">
+                  <span>
+                    <i class="uil uil-bookmark-full"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="liked-by">
+                <span><img src="./images/profile-15.jpg" alt="" /></span>
+                <span><img src="./images/profile-3.jpg" alt="" /></span>
+                <span><img src="./images/profile-6.jpg" alt="" /></span>
+                <p>Liked by <b>Ali</b> and <b>4 others</b></p>
+              </div>
+              <div class="caption">
+                <p>
+                  <b> Lorem ipsum</b> dolor sit amet consectetur adipisicing
+                  elit.
+                  <span class="hash-tag">#trending</span>
+                </p>
+              </div>
+              <table>
+                <tr>
+                  <td>
+                    <form
+                      onsubmit="event.preventDefault();onFormSubmit();"
+                      autocomplete="off"
+                    >
+                      <div class="Comment-area">
+                        <input type="text" name="fullName" class="fullName" />
+                        <label
+                          class="validation-error hide fullNameValidationError"
+                        ></label>
+                        <div class="form-action-buttons">
+                          <input
+                            type="submit"
+                            value="Comment"
+                            class="btn btn-primary"
+                          />
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <table class="list employeeList">
+                      <thead>
+                        <tr>
+                          <th></th>
+
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <div class="comments text-muted comment-count-text">
+                view all 3 comments
+              </div>
+              <!-- <div class="comments text-muted">view all 3 comments</div> -->
+            </div>
+            <!-- --------------------------2nd Feed End------------------- -->
+
+            <!-- -------------------------------3rd Feed------------------- -->
+
+            <div class="feed">
+              <div class="head">
+                <div class="user">
+                  <div class="profile-picture">
+                    <img src="./images/profile-13.jpg" alt="Profile Picture" />
+                  </div>
+                  <div class="ingo">
+                    <h3>Lana Rose</h3>
+                    <small>Dubai,15 MINUTES AGO</small>
+                  </div>
+                </div>
+                <span class="edit">
+                  <i class="uil uil-ellipsis-h"></i>
+                </span>
+              </div>
+              <div class="photo">
+                <img src="./images/feed-1.jpg" alt="image" />
+              </div>
+              <div class="action-buttons">
+                <div class="intraction-buttons">
+                  <span class="like-btn">
+                    <i class="fa-regular fa-heart active"></i
+                    ><i class="fa-solid fa-heart"></i>
+                  </span>
+                  <span class="Comment-btn">
+                    <i class="uil uil-comment-dots"></i>
+                  </span>
+                  <span>
+                    <i class="uil uil-share-alt"></i>
+                  </span>
+                </div>
+                <div class="bookmark">
+                  <span>
+                    <i class="uil uil-bookmark-full"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="liked-by">
+                <span><img src="./images/profile-15.jpg" alt="" /></span>
+                <span><img src="./images/profile-3.jpg" alt="" /></span>
+                <span><img src="./images/profile-6.jpg" alt="" /></span>
+                <p>Liked by <b>Ali</b> and <b>4 others</b></p>
+              </div>
+              <div class="caption">
+                <p>
+                  <b> Lorem ipsum</b> dolor sit amet consectetur adipisicing
+                  elit.
+                  <span class="hash-tag">#trending</span>
+                </p>
+              </div>
+              <table>
+                <tr>
+                  <td>
+                    <form
+                      onsubmit="event.preventDefault();onFormSubmit();"
+                      autocomplete="off"
+                    >
+                      <div class="Comment-area">
+                        <input type="text" name="fullName" class="fullName" />
+                        <label
+                          class="validation-error hide fullNameValidationError"
+                        ></label>
+                        <div class="form-action-buttons">
+                          <input
+                            type="submit"
+                            value="Comment"
+                            class="btn btn-primary"
+                          />
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <table class="list employeeList">
+                      <thead>
+                        <tr>
+                          <th></th>
+
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <div class="comments text-muted comment-count-text">
+                view all 3 comments
+              </div>
+            </div>
+            <!-- --------------------------3rd Feed End------------------- -->
+          </div>
+          <!-- --------------------------Feeds End------------------- -->
+        </div>
+        <!-- /* =================Subsection-Middle End=================== */ -->
+
+        <!-- /* ========================Subsection-Right============================ */ -->
+
+        <div class="right">
+          <div class="messages">
+            <div class="headings">
+              <h4>Messages</h4>
+              <i class="uil uil-edit"></i>
+            </div>
+            <!-- --------------------------Search Bar------------------- -->
+            <div class="search-bar">
+              <i class="uil uil-search"></i>
+              <input
+                type="search"
+                placeholder="Search Messages"
+                id="message-search"
+              />
+            </div>
+            <!-- --------------------------Message Catagory------------------- -->
+            <div class="category">
+              <h6 class="active">Primary</h6>
+              <h6>General</h6>
+              <h6 class="message-requests">Requests(7)</h6>
+            </div>
+            <!-- --------------------------Message------------------- -->
+            <div class="message">
+              <div class="profile-picture">
+                <img src="./images/profile-17.jpg" />
+                <div class="active"></div>
+              </div>
+              <div class="message-body">
+                <h5>Babar Azam</h5>
+                <p class="text-Muted">Just Woke up</p>
+              </div>
+            </div>
+            <!-- --------------------------Message------------------- -->
+            <div class="message">
+              <div class="profile-picture">
+                <img src="./images/profile-18.jpg" />
+              </div>
+              <div class="message-body">
+                <h5>Brother nomi</h5>
+                <p class="text-Muted">Brazil Lost 😂</p>
+              </div>
+            </div>
+            <!-- --------------------------Message------------------- -->
+            <div class="message">
+              <div class="profile-picture">
+                <img src="./images/profile-12.jpg" />
+              </div>
+              <div class="message-body">
+                <h5>Mesha</h5>
+                <div class="text-bold">2 new messages</div>
+
+                <p class="text-Muted">Argentina WON hell yeah💥</p>
+              </div>
+            </div>
+            <!-- --------------------------Message------------------- -->
+            <div class="message">
+              <div class="profile-picture">
+                <img src="./images/profile-15.jpg" />
+              </div>
+              <div class="message-body">
+                <h5>Messi</h5>
+                <p class="text-Muted">yeah i am comming</p>
+              </div>
+            </div>
+            <!-- --------------------------Message------------------- -->
+            <div class="message">
+              <div class="profile-picture">
+                <img src="./images/profile-19.jpg" />
+                <div class="active"></div>
+              </div>
+              <div class="message-body">
+                <h5>Alia</h5>
+                <p class="text-bold">you ok???</p>
+              </div>
+            </div>
+          </div>
+          <!-- ------------------END OF Message------------------- -->
+
+          <!-- --------------------------Friend Requests------------------- -->
+          <div class="friend-requests">
+            <h4>Request</h4>
+            <!-- --------------------------Request 1------------------- -->
+
+            <div class="request">
+              <div class="info">
+                <div class="profile-picture">
+                  <img src="./images/profile-13.jpg" />
+                </div>
+                <div>
+                  <h5>Ronaldo</h5>
+                  <p class="text-muted">3 mutual friends</p>
+                </div>
+              </div>
+              <div class="action">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn">Decline</button>
+              </div>
+            </div>
+            <!-- --------------------------Request 2------------------- -->
+
+            <div class="request">
+              <div class="info">
+                <div class="profile-picture">
+                  <img src="./images/profile-20.jpg" />
+                </div>
+                <div>
+                  <h5>Madrid</h5>
+                  <p class="text-muted">1 mutual friend</p>
+                </div>
+              </div>
+              <div class="action">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn">Decline</button>
+              </div>
+            </div>
+            <!-- --------------------------Request 3------------------- -->
+
+            <div class="request">
+              <div class="info">
+                <div class="profile-picture">
+                  <img src="./images/profile-16.jpg" />
+                </div>
+                <div>
+                  <h5>Alina</h5>
+                  <p class="text-muted">no mutual friends</p>
+                </div>
+              </div>
+              <div class="action">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn">Decline</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /* ==================Subsection-Right-END=================== */ -->
+      </div>
+    </main>
+    <!-- /* ==================Theme Customization=================== */ -->
+    <div class="customize-theme">
+      <div class="card">
+        <h2>Customize your view</h2>
+        <p>Manage your Font size, color,and background.</p>
+        <!-- Font SIZES -->
+        <div class="font-size">
+          <h4>Font Size</h4>
+          <div>
+            <h6>Aa</h6>
+            <div class="choose-size">
+              <span class="font-size-1"></span
+              ><span class="font-size-2 active"></span
+              ><span class="font-size-3"></span><span class="font-size-4"></span
+              ><span class="font-size-5"></span>
+            </div>
+            <h3>Aa</h3>
+          </div>
+        </div>
+
+        <!-- Primary COLORS -->
+        <div class="color">
+          <h4>Color</h4>
+          <div class="choose-color">
+            <span class="color-1 active"></span><span class="color-2"></span
+            ><span class="color-3"></span><span class="color-4"></span
+            ><span class="color-5"></span>
+          </div>
+        </div>
+
+        <!-- BACKGROUND COLOR -->
+        <div class="background">
+          <h4>Background</h4>
+          <div class="choose-bg">
+            <div class="bg-1 active">
+              <span></span>
+              <h5 for="bg-1">Light</h5>
+            </div>
+            <div class="bg-2">
+              <span></span>
+              <h5 for="bg-2">Dim</h5>
+            </div>
+            <div class="bg-3">
+              <span></span>
+              <h5 for="bg-3">Lights Out</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <h1>sdfghj</h1> -->
+
+    <script src="./script.js"></script>
+  </body>
+</html>
