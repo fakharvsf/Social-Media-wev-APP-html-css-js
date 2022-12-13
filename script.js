@@ -1,4 +1,5 @@
 // alert("ss");
+//To make code clean and unique
 "use strict";
 
 //SideBar
@@ -57,6 +58,12 @@ menuItems.forEach((item) => {
   });
 });
 
+//=====================================Logout==========================
+const logOut = document.querySelector("#Logout");
+logOut.addEventListener("click", function () {
+  window.location.replace("./signup/index.html");
+});
+
 // ====================Messages===============
 //search chats
 const searchMessage = () => {
@@ -88,7 +95,7 @@ const searchFeed = () => {
   });
 };
 
-//search chat
+//search Feed
 feedSearch.addEventListener("keyup", searchFeed);
 
 //Search FEED THROUGH API
@@ -101,7 +108,7 @@ async function searchPosts(e) {
   feeds.innerHTML = "";
 
   div.classList.add("feed");
-  const val = feedSearch.value.toLowerCase();
+  const val = feedSearch.value.toLowerCase(); //to avoid errors
   const res = await fetch(`https://dummyjson.com/posts/search?q=${val}`);
   const data = await res.json();
   console.log(data);
@@ -172,7 +179,7 @@ async function searchPosts(e) {
 }
 searchApi.addEventListener("click", searchPosts);
 
-// ====================Higlighting Message Section===============
+// ====================Higlighting Message Section=================================================
 
 messageNotification.addEventListener("click", () => {
   messages.style.boxShadow = "0 0 1rem var(--color-primary)";
@@ -514,6 +521,7 @@ async function getNewPost(e) {
   });
   const allPosts = await res.json();
   // .then((res) => res.json())
+
   for (let i = 0; i < 10; i++) {
     // console.log(allPosts.posts[i], allPosts.posts[i].id + 1);
     const feeds = document.querySelector(".feeds");
@@ -521,72 +529,102 @@ async function getNewPost(e) {
     div.classList.add("feed");
     j += 1;
 
-    const HTML = `
-              <div class="head">
-                <div class="user">
-                  <div class="profile-picture">
-                    <img src="./images/profile-${
-                      allPosts.posts[i].id + 1
-                    }.jpg" alt="Profile Picture" />
-                  </div>
-                  <div class="ingo">
-                    <h3>alpha</h3>
-                    <small>${allPosts.posts[i].title}</small>
-                  </div>
-                </div>
-                <span class="edit">
-                  <i class="uil uil-ellipsis-h"></i>
-                </span>
-              </div>
-              <div class="photo">
-              ${allPosts.posts[i].body}
-                
-              </div>
-              <div class="action-buttons">
-                <div class="intraction-buttons">
-                <span class="like-btn">
-                <i class="fa-regular fa-heart active"></i
-                ><i class="fa-solid fa-heart"></i>
-              </span>
-              <span class="Comment-btn">
-              <i class="uil uil-comment-dots"></i>
-            </span>
-                  <span>
-                    <i class="uil uil-share-alt"></i>
-                  </span>
-                </div>
-                <div class="bookmark">
-                  <span>
-                    <i class="uil uil-bookmark-full"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="liked-by"><p>Liked by <b>${
-                allPosts.posts[i].reactions
-              } others</b></p>
-              </div>
-              <div class="caption">
-                <p>
-                  <b> Lorem ipsum</b> dolor sit amet consectetur adipisicing
-                  elit.
-                  <span class="hash-tag">#trending</span>
-                </p>
-              </div>
-              <div class="comment-section">
-                <input type="text" class="search-bar comment-text" />
-                <button class="btn btn-primary add-comment-btn">
-                  Add Comment
-                </button>
-              </div>
-              <div class="comments text-muted comment-count-text" >
-                view all 3 comments
-              </div>
-              <!-- ---------------------------1st Feed end------------------- -->
-  `;
-    //   const feed = (document.querySelector(".feed").insertAdjacentHTML =
-    // ("afterbegin", HTML));
-    div.innerHTML = HTML;
+    //Comments
+    let response = await fetch(`https://dummyjson.com/comments/post/${i + 1}`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data.comments.length);
+    const HTML1 = `
+    <div class="head">
+      <div class="user">
+        <div class="profile-picture">
+          <img src="./images/profile-${
+            allPosts.posts[i].id + 1
+          }.jpg" alt="Profile Picture" />
+        </div>
+        <div class="ingo">
+          <h3>alpha</h3>
+          <small>${allPosts.posts[i].title}</small>
+        </div>
+      </div>
+      <span class="edit">
+        <i class="uil uil-ellipsis-h"></i>
+      </span>
+    </div>
+    <div class="photo">
+    ${allPosts.posts[i].body}
+      
+    </div>
+    <div class="action-buttons">
+      <div class="intraction-buttons">
+      <span class="like-btn">
+      <i class="fa-regular fa-heart active"></i
+      ><i class="fa-solid fa-heart"></i>
+    </span>
+    <span class="Comment-btn">
+    <i class="uil uil-comment-dots"></i>
+  </span>
+        <span>
+          <i class="uil uil-share-alt"></i>
+        </span>
+      </div>
+      <div class="bookmark">
+        <span>
+          <i class="uil uil-bookmark-full"></i>
+        </span>
+      </div>
+    </div>
+    <div class="liked-by"><p>Liked by <b>${
+      allPosts.posts[i].reactions
+    } others</b></p>
+    </div>
+    <div class="caption">
+      <p>
+        <b> Lorem ipsum</b> dolor sit amet consectetur adipisicing
+        elit.
+        <span class="hash-tag">#trending</span>
+      </p>
+    </div>
+    <div class="comment-section">
+      <input type="text" class="search-bar comment-text" />
+      <button class="btn btn-primary add-comment-btn">
+        Add Comment
+      </button>
+    </div>
+    `;
+    div.innerHTML = HTML1;
     feeds.appendChild(div);
+    for (let m = 0; m < data.comments.length; m++) {
+      console.log(data.comments[m].body);
+
+      const div2 = document.createElement("div");
+
+      const HTML2 = `
+      <div class="comment-block"><img class="comment-image" src="https://avatars0.githubusercontent.com/u/12679778?v=4&amp;s=90"/>
+  <div class="comment-dialog">
+    <h4 class="username">Matheus Plessmann</h4>
+    <p class="text">${data.comments[m].body}</p>
+  </div>
+  <button class="btn btn-primary cmt-btn" onClick="onDelete(this)">Delete</button>
+</div>
+        
+      <!-- ---------------------------1st Feed end------------------- -->
+`;
+      //   const feed = (document.querySelector(".feed").insertAdjacentHTML =
+      // ("afterbegin", HTML));
+
+      const feed = document.querySelectorAll(".feed");
+      feed.forEach((feed) => {
+        div2.innerHTML = HTML2;
+        feed.appendChild(div2);
+      });
+
+      // div2.insertAdjacentHTML("beforeend", HTML2);
+    }
   }
   //Feed Search
   const feedSearch = document.querySelector("#feed-search");
@@ -645,28 +683,29 @@ else if (window.addEventListener)
 else if (window.attachEvent) window.attachEvent("onload", getNewPost);
 
 //Get post when scrolled
-window.onscroll = function (ev) {
-  if (
-    window.innerHeight + window.pageYOffset >=
-    document.body.offsetHeight - 2
-  ) {
-    // alert("you're at the bottom of the page");
-    async function getNewPostOnScroll(e) {
-      //   e.preventDefault();
-      const res = await fetch("https://dummyjson.com/posts", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        // body:JSON.stringify()
-      });
-      const allPosts = await res.json();
-      // .then((res) => res.json())
-      for (j; j < 20; j++) {
-        // console.log(allPosts.posts[j], allPosts.posts[j].id + 1);
-        const feeds = document.querySelector(".feeds");
-        const div = document.createElement("div");
-        div.classList.add("feed");
+setTimeout(
+  (window.onscroll = function (ev) {
+    if (
+      window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 2
+    ) {
+      // alert("you're at the bottom of the page");
+      async function getNewPostOnScroll(e) {
+        //   e.preventDefault();
+        const res = await fetch("https://dummyjson.com/posts", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          // body:JSON.stringify()
+        });
+        const allPosts = await res.json();
+        // .then((res) => res.json())
+        for (j; j < 20; j++) {
+          // console.log(allPosts.posts[j], allPosts.posts[j].id + 1);
+          const feeds = document.querySelector(".feeds");
+          const div = document.createElement("div");
+          div.classList.add("feed");
 
-        const HTML = `
+          const HTML = `
                     <div class="head">
                       <div class="user">
                         <div class="profile-picture">
@@ -719,76 +758,86 @@ window.onscroll = function (ev) {
                     </div>
                     <!-- ---------------------------1st Feed end------------------- -->
         `;
-        //   const feed = (document.querySelector(".feed").insertAdjacentHTML =
-        // ("afterbegin", HTML));
-        div.innerHTML = HTML;
-        feeds.appendChild(div);
+          //   const feed = (document.querySelector(".feed").insertAdjacentHTML =
+          // ("afterbegin", HTML));
+          div.innerHTML = HTML;
+          feeds.appendChild(div);
+        }
+        //Feed Search
+        const feedSearch = document.querySelector("#feed-search");
+        const feeds = document.querySelector(".feeds");
+        const feed = document.querySelectorAll(".feed");
+        //   console.log(feed);
+        const searchFeed = () => {
+          const val = feedSearch.value.toLowerCase();
+          feed.forEach((chat) => {
+            let name = chat.querySelector("h3").textContent.toLocaleLowerCase();
+            let feedText = chat
+              .querySelector(".photo")
+              .textContent.toLocaleLowerCase();
+            if (name.indexOf(val) != -1 || feedText.indexOf(val) != -1) {
+              chat.style.display = "content";
+            } else {
+              chat.style.display = "none";
+            }
+          });
+        };
+
+        //search chat
+        feedSearch.addEventListener("keyup", searchFeed);
+        const commentInput = document.querySelectorAll(".comment-text");
+        //   console.log(commentInput);
+        const addCommentBtn = document.querySelectorAll(".add-comment-btn");
+        //   console.log(addCommentBtn);
+
+        const commentCountText = document.querySelectorAll(
+          ".comment-count-text"
+        );
+        //   console.log(commentCountText);
+
+        //Add Comment
+
+        for (let i = 0; i < addCommentBtn.length; i++) {
+          addCommentBtn[i].addEventListener("click", () => {
+            // for (let j = 0; j < commentInput.length; j++) {
+            let newComment = createComment(commentInput[i].value);
+            commentCountText[i].insertAdjacentElement(
+              "beforebegin",
+              newComment
+            );
+            // }
+            // for (let i = 0; i < commentCountText.length; i++) {
+            commentCountText[i].insertAdjacentElement(
+              "beforebegin",
+              newComment
+            );
+            // }
+          });
+        }
+        //   likeSetting();
+
+        //   console.log(allPosts);
+        //   console.log(allPosts.posts[0]);
       }
-      //Feed Search
-      const feedSearch = document.querySelector("#feed-search");
-      const feeds = document.querySelector(".feeds");
-      const feed = document.querySelectorAll(".feed");
-      //   console.log(feed);
-      const searchFeed = () => {
-        const val = feedSearch.value.toLowerCase();
-        feed.forEach((chat) => {
-          let name = chat.querySelector("h3").textContent.toLocaleLowerCase();
-          let feedText = chat
-            .querySelector(".photo")
-            .textContent.toLocaleLowerCase();
-          if (name.indexOf(val) != -1 || feedText.indexOf(val) != -1) {
-            chat.style.display = "content";
-          } else {
-            chat.style.display = "none";
-          }
-        });
-      };
+      getNewPostOnScroll();
+      //Toggle comment btn
+      const commentBtn = document.querySelectorAll(".Comment-btn");
+      //   console.log(commentBtn);
+      const commentSection = document.querySelectorAll(".comment-section");
+      //   console.log(commentSection);
+      console.log("sdfg", commentBtn.length);
 
-      //search chat
-      feedSearch.addEventListener("keyup", searchFeed);
-      const commentInput = document.querySelectorAll(".comment-text");
-      //   console.log(commentInput);
-      const addCommentBtn = document.querySelectorAll(".add-comment-btn");
-      //   console.log(addCommentBtn);
-
-      const commentCountText = document.querySelectorAll(".comment-count-text");
-      //   console.log(commentCountText);
-
-      //Add Comment
-
-      for (let i = 0; i < addCommentBtn.length; i++) {
-        addCommentBtn[i].addEventListener("click", () => {
-          // for (let j = 0; j < commentInput.length; j++) {
-          let newComment = createComment(commentInput[i].value);
-          commentCountText[i].insertAdjacentElement("beforebegin", newComment);
-          // }
-          // for (let i = 0; i < commentCountText.length; i++) {
-          commentCountText[i].insertAdjacentElement("beforebegin", newComment);
-          // }
+      for (let i = 1; i < commentBtn.length; i++) {
+        commentBtn[i].addEventListener("click", function () {
+          //   for (let p = 0; p < commentSection.length; p++) {
+          commentSection[i].classList.toggle("comment-section");
+          //   }
         });
       }
-      //   likeSetting();
-
-      //   console.log(allPosts);
-      //   console.log(allPosts.posts[0]);
     }
-    getNewPostOnScroll();
-    //Toggle comment btn
-    const commentBtn = document.querySelectorAll(".Comment-btn");
-    //   console.log(commentBtn);
-    const commentSection = document.querySelectorAll(".comment-section");
-    //   console.log(commentSection);
-    console.log("sdfg", commentBtn.length);
-
-    for (let i = 1; i < commentBtn.length; i++) {
-      commentBtn[i].addEventListener("click", function () {
-        //   for (let p = 0; p < commentSection.length; p++) {
-        commentSection[i].classList.toggle("comment-section");
-        //   }
-      });
-    }
-  }
-};
+  }),
+  2000
+);
 
 //LIke
 // function likeSetting() {
@@ -963,9 +1012,5 @@ for (let i = 0; i < commentBtn.length; i++) {
     //   }
   });
 }
-// window.onscroll = function (ev) {
-//   if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-//     alert("you're at the bottom of the page");
-//   }
-// };
+
 //END
