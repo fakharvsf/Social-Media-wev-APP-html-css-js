@@ -187,7 +187,7 @@ messageNotification.addEventListener("click", () => {
     "none";
   setTimeout(() => {
     messages.style.boxShadow = "none";
-  }, 2000);
+  }, 5000);
 });
 
 //Theme Customization
@@ -530,14 +530,7 @@ async function getNewPost(e) {
     j += 1;
 
     //Comments
-    let response = await fetch(`https://dummyjson.com/comments/post/${i + 1}`, {
-      method: "GET",
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    console.log(data.comments.length);
+
     const HTML1 = `
     <div class="head">
       <div class="user">
@@ -596,15 +589,26 @@ async function getNewPost(e) {
       </button>
     </div>
     `;
+
     div.innerHTML = HTML1;
     feeds.appendChild(div);
+    let response = await fetch(`https://dummyjson.com/comments/post/${i + 1}`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data.comments.length);
     for (let m = 0; m < data.comments.length; m++) {
       console.log(data.comments[m].body);
 
       const div2 = document.createElement("div");
 
       const HTML2 = `
-      <div class="comment-block"><img class="comment-image" src="https://avatars0.githubusercontent.com/u/12679778?v=4&amp;s=90"/>
+      <div class="comment-block"><img class="comment-image" src="./images/profile-${
+        i + 1
+      }.jpg"/>
   <div class="comment-dialog">
     <h4 class="username">Matheus Plessmann</h4>
     <p class="text">${data.comments[m].body}</p>
@@ -762,6 +766,46 @@ setTimeout(
           // ("afterbegin", HTML));
           div.innerHTML = HTML;
           feeds.appendChild(div);
+          let response = await fetch(
+            `https://dummyjson.com/comments/post/${j}`,
+            {
+              method: "GET",
+            }
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log(data.comments.length);
+          for (let m = 0; m < data.comments.length; m++) {
+            console.log(data.comments[m].body);
+
+            const div2 = document.createElement("div");
+
+            const HTML2 = `
+      <div class="comment-block"><img class="comment-image" src="./images/profile-${
+        j + 1
+      }.jpg"/>
+  <div class="comment-dialog">
+    <h4 class="username">Matheus Plessmann</h4>
+    <p class="text">${data.comments[m].body}</p>
+  </div>
+  <button class="btn btn-primary cmt-btn" onClick="onDelete(this)">Delete</button>
+</div>
+        
+      <!-- ---------------------------1st Feed end------------------- -->
+`;
+            //   const feed = (document.querySelector(".feed").insertAdjacentHTML =
+            // ("afterbegin", HTML));
+
+            const feed = document.querySelectorAll(".feed");
+            feed.forEach((feed) => {
+              div2.innerHTML = HTML2;
+              feed.appendChild(div2);
+            });
+
+            // div2.insertAdjacentHTML("beforeend", HTML2);
+          }
         }
         //Feed Search
         const feedSearch = document.querySelector("#feed-search");

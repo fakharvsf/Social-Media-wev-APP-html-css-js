@@ -463,7 +463,7 @@ table tbody tr {
   animation: popup 0.5s cubic-bezier(1, 0, 0, 1.5) forwards;
 }
 .comment-block .comment-dialog {
-  background-color: #87decd;
+  background-color: var(--color-primary);
   color: #fff;
   padding: 1rem;
   max-width: 300px;
